@@ -2,6 +2,7 @@ package com.jpmc.midascore.service;
 
 import com.jpmc.midascore.entity.TransactionRecord;
 import com.jpmc.midascore.entity.UserRecord;
+import com.jpmc.midascore.foundation.Balance;
 import com.jpmc.midascore.foundation.Incentive;
 import com.jpmc.midascore.foundation.Transaction;
 import com.jpmc.midascore.repository.TransactionRepository;
@@ -44,5 +45,11 @@ public class TransactionService {
     userRepository.save(sender);
     userRepository.save(recipient);
     transactionRepository.save(new TransactionRecord(tx.getAmount(), sender, recipient, incentiveAmount));
+  }
+
+  public Balance getUserBalance(long userId) {
+    UserRecord user = userRepository.findById(userId);
+    float amount = user != null ? user.getBalance() : 0f;
+    return new Balance(amount);
   }
 }
