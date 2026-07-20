@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 @Component
 public class TransactionListener {
@@ -13,6 +14,7 @@ public class TransactionListener {
   private static final Logger logger = LoggerFactory.getLogger(TransactionListener.class);
 
   private final TransactionService transactionService;
+
 
   public TransactionListener(TransactionService transactionService) {
     this.transactionService = transactionService;

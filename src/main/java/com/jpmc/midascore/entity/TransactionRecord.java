@@ -14,6 +14,9 @@ public class TransactionRecord {
   private long id;
   @Column(nullable = false)
   private float amount;
+  @Column(nullable = false)
+  private float incentive;
+
 
   @ManyToOne(cascade = CascadeType.ALL)
   private UserRecord sender;
@@ -23,10 +26,11 @@ public class TransactionRecord {
   public TransactionRecord() {
   }
 
-  public TransactionRecord(float amount, UserRecord sender, UserRecord recipient) {
+  public TransactionRecord(float amount, UserRecord sender, UserRecord recipient, float incentive) {
     this.amount = amount;
     this.sender = sender;
     this.recipient = recipient;
+    this.incentive = incentive;
   }
 
   public long getId() {
@@ -59,5 +63,13 @@ public class TransactionRecord {
 
   public void setRecipient(UserRecord recipient) {
     this.recipient = recipient;
+  }
+
+  public float getIncentive() {
+    return incentive;
+  }
+
+  public void setIncentive(float incentive) {
+    this.incentive = incentive;
   }
 }
